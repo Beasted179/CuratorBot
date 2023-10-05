@@ -1,0 +1,592 @@
+Item	Fief Level	Materials	Silver-Cost
+
+Orochi Samurai's Kit	6	
+12 Wrought Iron
+11 Pure Iron
+14 Pure Copper
+5 Minium
+400 Silver
+
+Zweihander's Kit	6	
+5 Pure Iron
+4 Pure Copper
+2 Finished Leather
+1 Minium
+400 Silver
+
+Cataphract Trooper's Kit	6	
+5 Boiled Leather
+5 Quality Fabric
+8 Wrought Iron
+8 Refined Copper
+200 Silver
+
+Falconetti Gunner's Kit	6	
+10 Wrought Iron
+8 Boiled Leather
+9 Composite Wood
+10 Refined Copper
+200 Silver
+
+Fire Lance Cavalry's Kit	6	
+8 Finished Leather
+8 Fine Fabric
+8 Wrought Iron
+10 Refined Copper
+200 Silver
+
+Iron Reaper's Kit	6	
+15 Refined Copper
+15 Wrought Iron
+10 Finished Leather
+5 Fine Fabric
+200 Silver
+
+Kheshig's Kit	6	
+6 Boiled Leather
+4 Wrought Iron
+6 Refined Copper
+10 Pure Copper
+200 Silver
+
+Monastic Knight's Kit	6	
+15 Wrought Iron
+10 Quality Fabric
+10 Pure Copper
+10 Finished Leather
+200 Silver
+
+Pavise Crossbowmen's Kit	6	
+5 Finished Leather
+5 Wrought Iron
+5 Quality Fabric
+5 Pure Copper
+200 Silver
+
+Rattan Ranger's Kit	6	
+5 Finished Leather
+5 Pure Iron
+5 Varnished Wood
+5 Refined Copper
+200 Silver
+
+Shieldmaiden's Kit	6	
+10 Wrought Iron
+12 Finished Leather
+12 Pure Copper
+5 Composite Wood
+200 Silver
+
+Silahdar's Kit	6	
+12 Wrought Iron
+12 Refined Copper
+12 Pure Copper
+9 Composite Wood
+200 Silver
+
+Siphonarioi's Kit	6	
+1 Hellfire
+10 Finished Leather
+15 Quality Fabric
+5 Pure Copper
+200 Silver
+
+Tercio Arquebusier's Kit	6	
+5 Wrought Iron
+10 Quality Fabric
+20 Refined Copper
+10 Boiled Leather
+200 Silver
+
+Winged Hussar's Kit	6	
+15 Wrought Iron
+10 Quality Fabric
+10 Pure Copper
+10 Finished Leather
+200 Silver
+
+Hashashin's Kit	6	
+11 Pure Iron
+20 Quality Fabric
+14 Boiled Leather
+18 Cloud Cotton
+200 Silver
+
+Retiarius's Kit	6	
+12 Wrought Iron
+14 Pure Copper
+10 Boiled Leather
+12 Tungsten
+200 Silver
+
+Varangian Guardsman's Kit	6	
+11 Pure Copper
+14 Finished Leather
+10 Composite Wood
+12 Chrysoberyl
+200 Silver
+
+Modao Battalion Kit	6	
+5 Laterite
+6 Varnished Wood
+8 Pure Iron
+8 Wrought Iron
+200 Silver
+
+Chevaliers Kit	6	
+12 Finished Leather
+10 Composite Wood
+14 Pure Iron
+11 Refined Copper
+200 Silver
+
+Houndsman's Kit	6	
+6 Bison Hide
+6 Composite Wood
+11 Fine Fabric
+5 Finished Leather
+200 Silver
+
+Shenji Grenadiers Kit	6	
+6 Fine Fabric
+15 Boiled Leather
+15 Pure Iron
+1 Dragon Gunpowder
+200 Silver
+
+Yanyuedao Cavalryman's Kit	6	
+15 Boiled Leather
+13 Fine Fabric
+13 Pure Iron
+5 Laterite
+200 Silver
+
+Onna-musha's Kit    Fief Level 5	
+4 Wrought Iron
+3 Refined Copper
+5 Varnished Wood
+12 Tungsten
+200 Silver
+
+Kriegsbruder's Kit    Fief Level 5	
+1 Pure Iron
+3 Refined Copper
+2 Boiled Leather
+1 Bison Hide
+200 Silver
+
+Azap's Kit    Fief Level 5	
+5 Wrought Iron
+4 Refined Copper
+4 Composite Wood
+100 Silver
+
+Berserker's Kit    Fief Level 5	
+3 Wrought Iron
+3 Refined Copper
+4 Composite Wood
+4 Boiled Leather
+100 Silver
+
+Dagger-Axe Lancer's Kit    Fief Level 5	
+5 Boiled Leather
+5 Fine Fabric
+5 Wrought Iron
+100 Silver
+
+Fortebraccio Pikemen's Kit    Fief Level 5	
+4 Wrought Iron
+4 Pure Copper
+5 Composite Wood
+100 Silver 
+
+Halberdier Sergeant's Kit    Fief Level 5	
+5 Boiled Leather
+5 Pure Iron
+5 Pure Copper
+100 Silver 
+
+Imperial Archer's Kit    Fief Level 5	
+4 Boiled Leather
+3 Wrought Iron
+3 Fine Fabric
+100 Silver 
+
+Imperial Arquebusier's Kit    Fief Level 5	
+3 Pure Copper
+3 Wrought Iron
+3 Quality Fabric
+100 Silver 
+
+Imperial Javelineer's Kit    Fief Level 5	
+4 Boiled Leather
+4 Varnished Wood
+4 Pure Copper
+100 Silver 
+
+Imperial Pike Guard's Kit    Fief Level 5	
+4 Boiled Leather
+4 Quality Fabric
+4 Pure Iron
+100 Silver 
+
+Imperial Spear Guard's Kit    Fief Level 5	
+4 Boiled Leather
+4 Wrought Iron
+4 Fine Fabric
+100 Silver 
+
+Javelin Sergeant's Kit    Fief Level 5	
+4 Finished Leather
+4 Pure Iron
+4 Pure Copper
+100 Silver 
+
+Khevtuul Cavalry's Kit    Fief Level 5	
+5 Pure Copper
+7 Varnished Wood
+5 Quality Fabric
+100 Silver 
+
+Kriegsrat Fusilier's Kit    Fief Level 5	
+5 Pure Iron
+4 Refined Copper
+4 Boiled Leather
+100 Silver 
+
+Men-at-Arm's Kit    Fief Level 5	
+3 Finished Leather
+4 Pure
+4 Refined Copper
+100 Silver 
+
+Palace Guard's Kit    Fief Level 5	
+4 Boiled Leather
+4 Wrought Iron
+4 Quality Fabric
+100 Silver 
+
+Prefecture Heavy Cavalry's Kit    Fief Level 5	
+6 Boiled Leather
+6 Quality Fabric
+6 Pure Iron
+100 Silver 
+
+Sipahi's Kit    Fief Level 5	
+5 Wrought Iron
+3 Quality Fabric
+3 Refined Copper
+5 Boiled Leather
+100 Silver 
+
+Spear Sergeant's Kit    Fief Level 5	
+3 Finished Leather
+4 Pure Iron
+3 Composite Wood
+100 Silver 
+
+Tsereg Swordsman's Kit    Fief Level 5	
+5 Finished Leather
+3 Pure Iron
+3 Composite Wood
+100 Silver 
+
+Vassal Longbowmen's Kit    Fief Level 5	
+3 Pure Iron
+3 Pure Copper
+2 Finished Leather
+100 Silver 
+
+Yeomen's Kit    Fief Level 5	
+5 Pure Iron
+5 Pure Copper
+5 Boiled Leather
+3 Fine Fabric
+100 Silver 
+
+Banner Guards Kit    Fief Level 5	
+6 Boiled Leather    
+5 Fine Fabric
+4 Composite Wood
+6 Bison Hide
+100 Silver 
+
+Huskarl's Kit    Fief Level 5	
+5 Wrought Iron
+4 Boiled Leather
+6 Refined Copper
+3 Fine Fabric
+100 Silver 
+
+Axe Raiders Kit    Fief Level 5	
+6 Pure Iron
+4 Composite Wood
+5 Boiled Leather
+6 Bison Hide
+100 Silver 
+
+Camel Lancer's Kit    Fief Level 5	
+6 Varnished Wood
+6 Pure Iron
+5 Quality Fabric
+3 Fine Fabric
+100 Silver
+
+Myrmillo's Kit    Fief Level 5	
+4 Wrought Iron
+5 Pure Iron
+4 Composite Wood
+3 Chrysoberyl
+100 Silver
+
+Greyhair Garrison Kit    Fief Level 5	
+2 Quality Fabric
+4 Varnished Wood
+2 Wrought Iron
+2 Pure Copper
+100 Silver
+
+Claymore's Kit    Fief Level 5	
+8 Minium
+8 Pure Copper
+3 Composite Wood
+4 Pure Iron
+100 Silver
+
+Crescent Monk's Kit    Fief Level 5	
+6 Pure Iron
+6 Pure Copper
+5 Varnished Wood
+18 Cloud Cotton
+100 Silver
+ 	Condottieri Guardmen's Kit    Fief Level 4	
+7 Cast Iron
+5 Improved Copper
+7 Treated Leather
+50
+ 	Demesne Arbalist's Kit    Fief Level 4	
+10 Planed Wood
+8 Cast Iron
+10 Treated Leather
+50
+ 	Demesne Arquebusier's Kit    Fief Level 4	
+15 Improved Copper
+10 Cast Iron
+10 Cheap Fabric
+50
+ 	Halberdier's Kit    Fief Level 4	
+5 Planed Wood
+5 Cast Iron
+15 Cheap Fabric
+50
+ 	Incendiary Archer's Kit    Fief Level 4	
+10 Planed Wood
+5 Treated Leather
+5 Improved Copper
+50
+ 	Ironcap Spearmen's Kit    Fief Level 4	
+8 Planed Wood
+5 Treated Leather
+5 Cast Iron
+50
+ 	Janissary's Kit    Fief Level 4	
+7 Improved Copper
+5 Treated Leather
+7 Planed Wood
+50
+ 	Khorchin's Kit    Fief Level 4	
+3 Cast Iron
+3 Treated Leather
+5 Planed Wood
+50
+ 	Namkhan Archer's Kit    Fief Level 4	
+4 Treated Leather
+6 Improved Copper
+6 Planed Wood
+50
+ 	Prefecture Archer's Kit    Fief Level 4	
+6 Planed Wood
+6 Cheap Fabric
+6 Improved Copper
+50
+ 	Prefecture Guard's Kit    Fief Level 4	
+8 Planed Wood
+5 Treated Leather
+5 Cast Iron
+50
+ 	Prefecture Pikeman's Kit    Fief Level 4	
+5 Planed Wood
+5 Treated Leather
+5 Cast Iron
+50
+ 	Rattan Marksmen's Kit    Fief Level 4	
+15 Planed Wood
+10 Cast Iron
+10 Cheap Fabric
+50
+ 	Rattan Viper's Kit    Fief Level 4	
+8 Planed Wood
+5 Cast Iron
+4 Improved Copper
+50
+ 	Selemchid's Kit    Fief Level 4	
+6 Cast Iron
+4 Improved Copper
+5 Cheap Fabric
+50
+ 	Son of Fenrir's Kit    Fief Level 4	
+7 Improved Copper
+5 Treated Leather
+7 Planed Wood
+50
+ 	Squire's Kit    Fief Level 4	
+10 Cast Iron
+5 Treated Leather
+5 Improved Copper
+50
+ 	Vanguard Archer's Kit    Fief Level 4	
+5 Planed Wood
+5 Cheap Fabric
+5 Improved Copper
+50
+
+Wuxing Pikeman's Kit    Fief Level 4	
+3 Treated Leather
+3 Planed Wood
+3 Cast Iron
+50
+
+Ronin's Kit    Fief Level 4	
+12 Cast Iron
+8 Cheap Fabric
+20 Treated Leather
+50
+
+Schutzdiener's Kit    Fief Level 4	
+2 Planed Wood
+2 Cheap Fabric
+5 Cast Iron
+50
+ 	Bagpiper's Kit    Fief Level 4	
+15 Planed Wood
+20 Cheap Fabric
+20 Treated Leather
+50
+ 	Jangju's Kit    Fief Level 4	
+8 Cheap Fabric
+6 Planed Wood
+8 Improved Copper
+50
+ 	Dimachaerus's Kit    Fief Level 4	
+12 Cast Iron
+10 Treated Leather
+8 Improved Copper
+50
+ 	Zykalian Militiaman's Kit    Fief Level 4	
+10 Treated Leather
+5 Cheap Fabric
+5 Cast Iron
+50
+ 	Cudgel Monks Kit    Fief Level 4	
+7 Planed Wood
+6 Improved Copper
+6 Cast Iron
+50
+ 	Outriders Kit    Fief Level 4	
+10 Mountain Phosphorous
+12 Magnetite
+12 Sheepskin
+50
+ 	Alchemists Kit    Fief Level 4	
+20 Cheap Fabric
+14 Planed Wood
+16 Cast Iron
+50
+ 	Demesne Javelineer's Kit    Fief Level 3	
+15 Raw Iron
+15 Seasoned Wood
+10 Tanned Leather
+25
+ 	Demesne Spearman's Kit    Fief Level 3	
+15 Tanned Leather
+15 Rough Fabric
+5 Raw Iron
+25
+ 	Demesne Archer's Kit    Fief Level 3	
+15 Seasoned Wood
+10 Coarse Copper
+10 Rough Fabric
+25
+ 	Demesne Crossbowman's Kit    Fief Level 3	
+15 Seasoned Wood
+15 Rough Fabric
+15 Coarse Copper
+25
+ 	Coutilier's Kit    Fief Level 3	
+30 Raw Iron
+20 Seasoned Wood
+20 Tanned Leather
+25
+ 	Ironcap Swordmen's Kit    Fief Level 3	
+10 Raw Iron
+10 Seasoned Wood
+15 Tanned Leather
+25
+ 	Rattan Roundshield's Kit    Fief Level 3	
+20 Seasoned Wood
+15 Raw Iron
+15 Rough Fabric
+25
+ 	Javelin Militia's Kit    Fief Level 3	
+10 Seasoned Wood
+20 Tanned Leather
+15 Raw Iron
+25
+ 	Rattan Pikeman's Kit    Fief Level 3	
+20 Seasoned Wood
+10 Coarse Copper
+25
+ 	Pike Militiaman's Kit    Fief Level 3	
+10 Raw Iron
+10 Tanned Leather
+10 Rough Fabric
+25
+ 	Ironcap Archer's Kit    Fief Level 3	
+15 Coarse Copper
+10 Seasoned Wood
+5 Tanned Leather
+25
+ 	Ironcap Arquebusier's Kit    Fief Level 3	
+10 Rough Fabric
+15 Coarse Copper
+5 Tanned Leather
+25
+ 	Ironcap Scout's Kit    Fief Level 3	
+15 Raw Iron
+30 Rough Fabric
+15 Coarse Copper
+25
+ 	Ironcap Bowrider's Kit    Fief Level 3	
+20 Seasoned Wood
+20 Coarse Copper
+20 Rough Fabric
+25
+ 	Levy Bowman's Kit    Fief Level 1	
+5 Raw Iron
+12 Seasoned Wood
+10
+ 	Demesne Pikeman's Kit    Fief Level 1	
+4 Raw Iron
+8 Seasoned Wood
+10
+ 	Spear Militiaman's Kit    Fief Level 1	
+15 Seasoned Wood
+10 Silver
+ 	Sword Militiaman's Kit    Fief Level 1	
+5 Raw Iron
+12 Seasoned Wood
+10 Silver
+ 	Archer Militiaman's Kit    Fief Level 1	
+5 Raw Iron
+12 Seasoned Wood
+10 Silver
