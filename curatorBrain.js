@@ -1,9 +1,9 @@
 
 import { config } from "dotenv";
 config();
+import { FaissStore } from "langchain/vectorstores/faiss";
 import { OpenAI, OpenAIChat } from "langchain/llms/openai";
 import { ConversationChain } from "langchain/chains";
-import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { PromptTemplate } from "langchain/prompts";
@@ -25,7 +25,7 @@ const textSplitter = new RecursiveCharacterTextSplitter({
 
 const docs = await textSplitter.createDocuments([text]);
 /* Create the vectorstore */
-const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+const vectorStore = await FaissStore.fromDocuments(docs, new OpenAIEmbeddings());
 /* Create the chain */
 
 
