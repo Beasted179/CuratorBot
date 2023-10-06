@@ -129,9 +129,6 @@ if (interaction.commandName === "downloadattendance" && interaction.member.roles
   console.log("it recognized the command");
 
   try {
-    // Retrieve data from the PostgreSQL database
-    await dbClient.connect();
-    console.log('Connected to PostgreSQL database');
 
     // Query to retrieve attendance data (customize as needed)
     const query = 'SELECT username, attendance_status FROM attendance_data';
