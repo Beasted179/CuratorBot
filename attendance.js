@@ -52,17 +52,12 @@ client.on("interactionCreate", async (interaction) => {
       .setStyle(ButtonStyle.Primary);
     
     const row = new ActionRowBuilder().addComponents(yes, no, maybe);
-    console.log(interaction.options)
-    if(!interaction.options.getString("event")) { 
+   
     await interaction.reply({
+      content: interaction.options.getString("event") || " ",
       components: [row],
     })
-  } else {
-    await interaction.reply({
-      content: interaction.options.getString("event"),
-      components: [row],
-    });
-  }
+
     // Define a collector to listen for button interactions
     const collector = interaction.channel.createMessageComponentCollector({
       filter: (interaction) =>
@@ -122,12 +117,10 @@ client.on("interactionCreate", async (interaction) => {
           content: toUser,
           ephemeral: true,
         });
+        await dbClient.end();
       } catch (error) {
         console.error('Error:', error);
-      } finally {
-        // Close the database connection when done
-        await dbClient.end();
-      }
+      } 
       
 });
 
