@@ -53,7 +53,7 @@ client.on("interactionCreate", async (interaction) => {
     
     const row = new ActionRowBuilder().addComponents(yes, no, maybe);
    
-    await interaction.reply({
+    const response = await interaction.reply({
       content: interaction.options.getString("event") || " ",
       components: [row],
     })
