@@ -74,7 +74,7 @@ client.on("interactionCreate", async (interaction) => {
       
         // Define the table name for attendance data
         const tableName = 'attendance_data';
-      
+        
         // Create the table if it doesn't exist
         const createTableQuery = `
           CREATE TABLE IF NOT EXISTS ${tableName} (
@@ -93,7 +93,7 @@ client.on("interactionCreate", async (interaction) => {
           `;
           const values = [username, attendanceStatus];
           await dbClient.query(insertQuery, values);
-      
+          dbClient.release()
           toUser = `Attendance choice ${attendanceStatus} recorded for ${username}`;
 
         await interaction.reply({
@@ -101,21 +101,31 @@ client.on("interactionCreate", async (interaction) => {
           ephemeral: true,
         });
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error handling interaction:', error);
+    
+        // Handle the error and send an error response if needed
+        interaction.reply('An error occurred while processing your request.');
+      } finally {
+        if (client) {
+          // Release the client back to the pool in case of an error
+          client.release();
+        }
       }
       });
 
-}
-
-if (interaction.commandName === "downloadattendance" && interaction.member.roles.cache.some(role => role.name === "Admin")) {
-  console.log("it recognized the command");
-
+} else if (interaction.commandName === "downloadattendance"  ) {
+  if(!interaction.member.roles.cache.some(role => role.name === "Admin")) {
+    await interaction.reply({ 
+      content: "You do not have permission to use this command.", 
+      ephemeral: true });
+      return;
+  } 
   try {
-
+    const db = await dbClient.connect();
     // Query to retrieve attendance data (customize as needed)
     const query = 'SELECT username, attendance_status FROM attendance_data';
 
-    const result = await dbClient.query(query);
+    const result = await db.query(query);
 
     // Format the data as a text file
     const textContent = result.rows.map(row => `${row.username}: ${row.attendance_status}`).join('\n');
@@ -139,8 +149,10 @@ if (interaction.commandName === "downloadattendance" && interaction.member.roles
   } catch (error) {
     console.error('Error:', error);
   } finally {
-    // Close the database connection when done
-    await dbClient.end();
+    // Release the client back to the pool
+    if (dbClient) {
+      dbClient.release();
+    }
   }
 }
 
