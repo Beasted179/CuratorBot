@@ -6,7 +6,7 @@ import {
   ButtonBuilder,
   ButtonStyle,
   AttachmentBuilder, 
-  createMessageComponentCollector,
+  ComponentType,
 } from "discord.js";
 import {dbClient} from "./Client.js";
 import{ handleuserinput }from"./curatorBrain.js";
