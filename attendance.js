@@ -51,9 +51,16 @@ client.on("interactionCreate", async (interaction) => {
       .setStyle(ButtonStyle.Primary);
     
     const row = new ActionRowBuilder().addComponents(yes, no, maybe);
+    if(!interaction.options.getString("event")) { 
     await interaction.reply({
       components: [row],
+    })
+  } else {
+    await interaction.update({
+      content: interaction.options.getString("event"),
+      components: [row],
     });
+  }
     // Define a collector to listen for button interactions
     const collector = interaction.channel.createMessageComponentCollector({
       filter: (interaction) =>

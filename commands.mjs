@@ -11,7 +11,15 @@ const commands = [
   {
     name: 'downloadattendance',
     description: 'Downloads PDF of the attendance',
-  },
+    options: [
+      {
+        name: 'event',
+        type: 'STRING',
+        description: 'An optional event message',
+        required: false, 
+      },
+    ],
+  }
 ];
 
 (async () => {
