@@ -51,12 +51,13 @@ client.on("interactionCreate", async (interaction) => {
       .setStyle(ButtonStyle.Primary);
     
     const row = new ActionRowBuilder().addComponents(yes, no, maybe);
+    console.log(interaction.options)
     if(!interaction.options.getString("event")) { 
     await interaction.reply({
       components: [row],
     })
   } else {
-    await interaction.update({
+    await interaction.reply({
       content: interaction.options.getString("event"),
       components: [row],
     });

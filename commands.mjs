@@ -1,24 +1,25 @@
 import { config } from "dotenv";
 config();
-import { REST } from 'discord.js';
+import { ApplicationCommandOptionType, REST } from 'discord.js';
 import { Routes } from 'discord-api-types/v9'; // Use v9 for Discord.js v14
 
 const commands = [
   {
     name: 'attendance',
     description: 'Produces a button menu for attendance',
-  },
-  {
-    name: 'downloadattendance',
-    description: 'Downloads PDF of the attendance',
     options: [
       {
         name: 'event',
-        type: 'STRING',
         description: 'An optional event message',
+        type: ApplicationCommandOptionType.String,
         required: false, 
       },
     ],
+  },
+  
+  {
+    name: 'downloadattendance',
+    description: 'Downloads PDF of the attendance',
   }
 ];
 
