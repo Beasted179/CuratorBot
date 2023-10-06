@@ -7,6 +7,7 @@ import {
   ButtonStyle,
   AttachmentBuilder, 
 } from "discord.js";
+import {dbClient} from "./Client.js";
 import{ handleuserinput }from"./curatorBrain.js";
 import * as fs from "fs" ;
 import { config } from "dotenv";
@@ -75,28 +76,56 @@ client.on("interactionCreate", async (interaction) => {
       console.log(username)
       let attendanceStatus = interaction.customId
       console.log(attendanceStatus)
-
-      let toUser;
-      if (attendanceStatus === "No") {
-        let response = `${username}\tNo\n`
-        fs.appendFileSync('./attendance.txt', response, 'utf-8'),
-          toUser = `Alright ${username}no hard feelings see ya !`;
-      } else if (attendanceStatus === "Yes") {
-        let response = `${username}\tYes\n`
-        fs.appendFileSync('./attendance.txt', response, 'utf-8'),
-         toUser =`Alright ${username} see you there !`;
-      } else if (attendanceStatus === "Maybe") {
-        let response = `${username}\tMaybe\n`
-        fs.appendFileSync('./attendance.txt', response, 'utf-8'),
-          toUser =`Alright ${username} hope to see you there !`;
-      } else { 
-        return;
-}
-await interaction.reply({
-  content: toUser,
-  ephemeral: true,
-});
-
+      try {
+        // Connect to the PostgreSQL database
+        await dbClient.connect();
+        console.log('Connected to PostgreSQL database');
+      
+        // Define the table name for attendance data
+        const tableName = 'attendance_data';
+      
+        // Create the table if it doesn't exist
+        const createTableQuery = `
+          CREATE TABLE IF NOT EXISTS ${tableName} (
+            id serial PRIMARY KEY,
+            username VARCHAR(255) NOT NULL,
+            attendance_status VARCHAR(10) NOT NULL,
+            created_at TIMESTAMP DEFAULT NOW()
+          )
+        `;
+        await dbClient.query(createTableQuery);
+      
+        let toUser;
+      
+        if (attendanceStatus === "No" || attendanceStatus === "Yes" || attendanceStatus === "Maybe") {
+          // Insert attendance data into the database
+          const insertQuery = `
+            INSERT INTO ${tableName} (username, attendance_status) VALUES ($1, $2)
+          `;
+          const values = [username, attendanceStatus];
+          await dbClient.query(insertQuery, values);
+      
+          // Set the response message
+          if (attendanceStatus === "No") {
+            toUser = `Alright ${username}, no hard feelings. See you next time!`;
+          } else if (attendanceStatus === "Yes") {
+            toUser = `Great! ${username}, we'll see you there!`;
+          } else if (attendanceStatus === "Maybe") {
+            toUser = `Hope to see you there, ${username}!`;
+          }
+        } else {
+          return;
+        }
+      
+        // Respond to the user interaction
+        await interaction.reply({
+          content: toUser,
+          ephemeral: true,
+        });
+      } catch (error) {
+        console.error('Error:', error);
+      } 
+      
 });
 
 }

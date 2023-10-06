@@ -18,6 +18,7 @@
     "dotenv": "^16.3.1",
     "faiss-node": "^0.3.0",
     "hnswlib-node": "^1.4.2",
-    "langchain": "^0.0.160"
+    "langchain": "^0.0.160",
+    "pg": "^8.11.3"
   }
 }
