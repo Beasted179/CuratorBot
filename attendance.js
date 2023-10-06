@@ -117,11 +117,9 @@ client.on("interactionCreate", async (interaction) => {
           content: toUser,
           ephemeral: true,
         });
-        await dbClient.end();
       } catch (error) {
         console.error('Error:', error);
       } 
-      
 });
 
 }
