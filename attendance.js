@@ -59,13 +59,8 @@ client.on("interactionCreate", async (interaction) => {
     })
 
     // Define a collector to listen for button interactions
-    const collector = interaction.channel.createMessageComponentCollector({
-      filter: (interaction) =>
-        ["Yes", "No", "Maybe"].includes(
-          interaction.customId
-        ) && interaction.isButton(),
-    });
-
+    const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 3_600_000 });
+  
     collector.on("collect", async (interaction) => {
       const username = interaction.member.nickname;
       console.log(username)
