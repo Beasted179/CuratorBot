@@ -86,8 +86,6 @@ client.on("interactionCreate", async (interaction) => {
         await dbClient.query(createTableQuery);
       
         let toUser;
-      
-        if (attendanceStatus === "No" || attendanceStatus === "Yes" || attendanceStatus === "Maybe") {
           // Insert attendance data into the database
           const insertQuery = `
             INSERT INTO ${tableName} (username, attendance_status) VALUES ($1, $2)
@@ -95,29 +93,19 @@ client.on("interactionCreate", async (interaction) => {
           const values = [username, attendanceStatus];
           await dbClient.query(insertQuery, values);
       
-          // Set the response message
-          if (attendanceStatus === "No") {
-            toUser = `Alright ${username}, no hard feelings. See you next time!`;
-          } else if (attendanceStatus === "Yes") {
-            toUser = `Great! ${username}, we'll see you there!`;
-          } else if (attendanceStatus === "Maybe") {
-            toUser = `Hope to see you there, ${username}!`;
-          }
-        } else {
-          return;
-        }
-      
-        // Respond to the user interaction
+          toUser = `Attendance choice ${attendanceStatus} recorded for ${username}`;
+
         await interaction.reply({
           content: toUser,
           ephemeral: true,
         });
       } catch (error) {
         console.error('Error:', error);
-      } 
-});
+      }
+      });
 
 }
+
 if (interaction.commandName === "downloadattendance" && interaction.member.roles.cache.some(role => role.name === "Admin")) {
   console.log("it recognized the command");
 
