@@ -19,7 +19,7 @@ client.once("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 client.on("messageCreate", async (message) => {
-  // Check if the message mentions the bot
+  if (message.author.bot) return;
   if (message.mentions.has(client.user)) {
     const messageContent = message.content;
     // Remove user mentions and bot mentions
