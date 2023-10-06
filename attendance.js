@@ -124,32 +124,54 @@ client.on("interactionCreate", async (interaction) => {
         });
       } catch (error) {
         console.error('Error:', error);
-      } 
+      } finally {
+        // Close the database connection when done
+        await dbClient.end();
+      }
       
 });
 
 }
 if (interaction.commandName === "downloadattendance" && interaction.member.roles.cache.some(role => role.name === "Admin")) {
-  console.log("it recognized the command")
-  const attachment = new AttachmentBuilder()
-    .setFile('./attendance.txt')
-    .setDescription('Members Attendance Roster')
-    .setName('attendance.txt')
-    .setSpoiler(false);
+  console.log("it recognized the command");
 
   try {
+    // Retrieve data from the PostgreSQL database
+    await dbClient.connect();
+    console.log('Connected to PostgreSQL database');
+
+    // Query to retrieve attendance data (customize as needed)
+    const query = 'SELECT username, attendance_status FROM attendance_data';
+
+    const result = await dbClient.query(query);
+
+    // Format the data as a text file
+    const textContent = result.rows.map(row => `${row.username}: ${row.attendance_status}`).join('\n');
+
+    // Set the file name and description
+    const fileName = 'attendance.txt';
+
+    // Create an AttachmentBuilder instance
+    const attachment = new AttachmentBuilder()
+      .setFile(Buffer.from(textContent, 'utf-8'))
+      .setDescription('Members Attendance Roster')
+      .setName(fileName)
+      .setSpoiler(false);
+
+    // Send the text file as an attachment
     await interaction.reply({
-      content: "Here is the attendance roster",
+      content: "Here is the attendance roster:",
       files: [attachment],
       ephemeral: true, // Optional: Make the response ephemeral
     });
-    
-    // Clear the contents of the file
-    fs.writeFileSync('./attendance.txt'," ",'utf-8');
   } catch (error) {
-    console.log(error)
+    console.error('Error:', error);
+  } finally {
+    // Close the database connection when done
+    await dbClient.end();
   }
 }
+
 
 });
 
