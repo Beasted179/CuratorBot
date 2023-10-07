@@ -12,15 +12,22 @@ const commands = [
         name: 'event',
         description: 'An optional event message',
         type: ApplicationCommandOptionType.String,
-        required: false, 
+        required: false,
       },
     ],
   },
-  
   {
     name: 'downloadattendance',
     description: 'Downloads PDF of the attendance',
-  }
+    options: [
+      {
+        name: 'delete',
+        description: 'Delete the attendance roster after download',
+        type: ApplicationCommandOptionType.Boolean,
+        required: false,
+      },
+    ],
+  },
 ];
 
 (async () => {

@@ -72,9 +72,8 @@ client.on("interactionCreate", async (interaction) => {
       console.log(attendanceStatus)
       try {
         
-        console.log(db, "this is the db")
-        // Connect to the PostgreSQL database
-       
+   
+
         console.log('Connected to PostgreSQL database');
       
         // Define the table name for attendance data
@@ -147,6 +146,13 @@ client.on("interactionCreate", async (interaction) => {
       files: [attachment],
       ephemeral: true, // Optional: Make the response ephemeral
     });
+    if (interaction.options.getBoolean("delete")) {
+      await db.query('DELETE FROM attendance_data');
+      await interaction.followUp({
+        content: "Attendance roster deleted",
+        ephemeral: true,
+      });
+    }
   } catch (error) {
     console.error('Error:', error);
   } 
