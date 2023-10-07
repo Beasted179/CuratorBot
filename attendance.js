@@ -94,7 +94,7 @@ client.on("interactionCreate", async (interaction) => {
           `;
           const values = [username, attendanceStatus];
           await client.query(insertQuery, values);
-          dbClient.release()
+          client.release()
           toUser = `Attendance choice ${attendanceStatus} recorded for ${username}`;
 
         await interaction.reply({
