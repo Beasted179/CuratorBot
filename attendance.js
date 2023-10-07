@@ -8,6 +8,7 @@ import {
   AttachmentBuilder, 
   ComponentType,
 } from "discord.js";
+
 import {dbClient} from "./Client.js";
 import{ handleuserinput }from"./curatorBrain.js";
 import * as fs from "fs" ;
@@ -69,7 +70,7 @@ client.on("interactionCreate", async (interaction) => {
       console.log(attendanceStatus)
       try {
         // Connect to the PostgreSQL database
-        await dbClient.connect();
+       const client =  await dbClient.connect();
         console.log('Connected to PostgreSQL database');
       
         // Define the table name for attendance data
@@ -84,7 +85,7 @@ client.on("interactionCreate", async (interaction) => {
             created_at TIMESTAMP DEFAULT NOW()
           )
         `;
-        await dbClient.query(createTableQuery);
+        await client.query(createTableQuery);
       
         let toUser;
           // Insert attendance data into the database
@@ -92,7 +93,7 @@ client.on("interactionCreate", async (interaction) => {
             INSERT INTO ${tableName} (username, attendance_status) VALUES ($1, $2)
           `;
           const values = [username, attendanceStatus];
-          await dbClient.query(insertQuery, values);
+          await client.query(insertQuery, values);
           dbClient.release()
           toUser = `Attendance choice ${attendanceStatus} recorded for ${username}`;
 
@@ -150,8 +151,8 @@ client.on("interactionCreate", async (interaction) => {
     console.error('Error:', error);
   } finally {
     // Release the client back to the pool
-    if (dbClient) {
-      dbClient.release();
+    if (db) {
+      db.release();
     }
   }
 }
