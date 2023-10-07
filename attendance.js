@@ -38,6 +38,8 @@ client.on("messageCreate", async (message) => {
 
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
+  let db;
+  db =  await dbClient.connect();
   if (interaction.commandName === "attendance") {
     const yes = new ButtonBuilder()
       .setCustomId("Yes")
@@ -62,15 +64,17 @@ client.on("interactionCreate", async (interaction) => {
 
     // Define a collector to listen for button interactions
     const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 3_600_000 });
-  
+    
     collector.on("collect", async (interaction) => {
       const username = interaction.member.nickname;
       console.log(username)
       let attendanceStatus = interaction.customId
       console.log(attendanceStatus)
       try {
+        
+        console.log(db, "this is the db")
         // Connect to the PostgreSQL database
-       const client =  await dbClient.connect();
+       
         console.log('Connected to PostgreSQL database');
       
         // Define the table name for attendance data
@@ -85,7 +89,7 @@ client.on("interactionCreate", async (interaction) => {
             created_at TIMESTAMP DEFAULT NOW()
           )
         `;
-        await client.query(createTableQuery);
+        await db.query(createTableQuery);
       
         let toUser;
           // Insert attendance data into the database
@@ -93,25 +97,20 @@ client.on("interactionCreate", async (interaction) => {
             INSERT INTO ${tableName} (username, attendance_status) VALUES ($1, $2)
           `;
           const values = [username, attendanceStatus];
-          await client.query(insertQuery, values);
-          client.release()
+          await db.query(insertQuery, values);
+
           toUser = `Attendance choice ${attendanceStatus} recorded for ${username}`;
 
         await interaction.reply({
           content: toUser,
           ephemeral: true,
         });
+        
       } catch (error) {
         console.error('Error handling interaction:', error);
-    
         // Handle the error and send an error response if needed
         interaction.reply('An error occurred while processing your request.');
-      } finally {
-        if (client) {
-          // Release the client back to the pool in case of an error
-          client.release();
-        }
-      }
+      } 
       });
 
 } else if (interaction.commandName === "downloadattendance"  ) {
@@ -122,26 +121,27 @@ client.on("interactionCreate", async (interaction) => {
       return;
   } 
   try {
-    const db = await dbClient.connect();
+    
+     db = await dbClient.connect();
     // Query to retrieve attendance data (customize as needed)
     const query = 'SELECT username, attendance_status FROM attendance_data';
 
     const result = await db.query(query);
 
-    // Format the data as a text file
+   
     const textContent = result.rows.map(row => `${row.username}: ${row.attendance_status}`).join('\n');
 
-    // Set the file name and description
+
     const fileName = 'attendance.txt';
 
-    // Create an AttachmentBuilder instance
+  
     const attachment = new AttachmentBuilder()
       .setFile(Buffer.from(textContent, 'utf-8'))
       .setDescription('Members Attendance Roster')
       .setName(fileName)
       .setSpoiler(false);
 
-    // Send the text file as an attachment
+
     await interaction.reply({
       content: "Here is the attendance roster:",
       files: [attachment],
@@ -149,15 +149,10 @@ client.on("interactionCreate", async (interaction) => {
     });
   } catch (error) {
     console.error('Error:', error);
-  } finally {
-    // Release the client back to the pool
-    if (db) {
-      db.release();
-    }
-  }
+  } 
 }
-
-
+console.log("releasing db")
+db.release()
 });
 
 
