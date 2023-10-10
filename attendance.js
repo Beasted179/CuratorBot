@@ -18,57 +18,6 @@ const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
 });
 
-// Set up the global listener for button interactions
-client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isButton()) {
-    return; // Ignore interactions that are not buttons
-  }
-
-  // Check if it's the specific custom ID you are interested in
-  if (interaction.customId === "Yes" || interaction.customId === "No" || interaction.customId === "Maybe") {
-    const username = interaction.member.nickname;
-    console.log(username);
-    let attendanceStatus = interaction.customId;
-    console.log(attendanceStatus);
-    try {
-      console.log('Connected to PostgreSQL database');
-
-      // Define the table name for attendance data
-      const tableName = 'attendance_data';
-
-      // Create the table if it doesn't exist
-      const createTableQuery = `
-        CREATE TABLE IF NOT EXISTS ${tableName} (
-          id serial PRIMARY KEY,
-          username VARCHAR(255) NOT NULL,
-          attendance_status VARCHAR(10) NOT NULL,
-          created_at TIMESTAMP DEFAULT NOW()
-        )
-      `;
-      await db.query(createTableQuery);
-
-      let toUser;
-
-      // Insert attendance data into the database
-      const insertQuery = `
-        INSERT INTO ${tableName} (username, attendance_status) VALUES ($1, $2)
-      `;
-      const values = [username, attendanceStatus];
-      await db.query(insertQuery, values);
-
-      toUser = `Attendance choice ${attendanceStatus} recorded for ${username}`;
-
-      await interaction.reply({
-        content: toUser,
-        ephemeral: true,
-      });
-    } catch (error) {
-      console.error('Error handling interaction:', error);
-      // Handle the error and send an error response if needed
-      interaction.reply('An error occurred while processing your request.');
-    }
-  }
-});
 
 // The rest of your bot initialization code, including the "ready" event handler
 client.once("ready", () => {
@@ -91,6 +40,7 @@ client.on("messageCreate", async (message) => {
 });
 
 client.on("interactionCreate", async (interaction) => {
+  
   if (interaction.commandName === "attendance") {
     const yes = new ButtonBuilder()
       .setCustomId("Yes")
@@ -122,11 +72,10 @@ client.on("interactionCreate", async (interaction) => {
     } 
     try {
       
-       db = await dbClient.connect();
       // Query to retrieve attendance data (customize as needed)
       const query = 'SELECT username, attendance_status FROM attendance_data';
   
-      const result = await db.query(query);
+      const result = await dbClient.query(query);
   
      
       const textContent = result.rows.map(row => `${row.username}: ${row.attendance_status}`).join('\n');
@@ -149,7 +98,7 @@ client.on("interactionCreate", async (interaction) => {
       }); 
       console.log(interaction.options)
       if (interaction.options.getBoolean("delete")) {
-        await db.query('DELETE FROM attendance_data');
+        await dbClient.query('DELETE FROM attendance_data');
         await interaction.followUp({
           content: "Attendance roster deleted",
           ephemeral: true,
@@ -160,7 +109,52 @@ client.on("interactionCreate", async (interaction) => {
     } 
   
 
-} 
+} else if(interaction.isButton()){
+  console.log(interaction, "this is the interaction");
+  if (interaction.customId === "Yes" || interaction.customId === "No" || interaction.customId === "Maybe") {
+    const username = interaction.member.nickname;
+    console.log(username);
+    let attendanceStatus = interaction.customId;
+    console.log(attendanceStatus);
+    try {
+      console.log('Connected to PostgreSQL database');
+
+      // Define the table name for attendance data
+      const tableName = 'attendance_data';
+
+      // Create the table if it doesn't exist
+      const createTableQuery = `
+        CREATE TABLE IF NOT EXISTS ${tableName} (
+          id serial PRIMARY KEY,
+          username VARCHAR(255) NOT NULL,
+          attendance_status VARCHAR(10) NOT NULL,
+          created_at TIMESTAMP DEFAULT NOW()
+        )
+      `;
+      await dbClient.query(createTableQuery);
+
+      let toUser;
+
+      // Insert attendance data into the database
+      const insertQuery = `
+        INSERT INTO ${tableName} (username, attendance_status) VALUES ($1, $2)
+      `;
+      const values = [username, attendanceStatus];
+      await dbClient.query(insertQuery, values);
+
+      toUser = `Attendance choice ${attendanceStatus} recorded for ${username}`;
+
+      await interaction.reply({
+        content: toUser,
+        ephemeral: true,
+      });
+    } catch (error) {
+      console.error('Error handling interaction:', error);
+      // Handle the error and send an error response if needed
+      interaction.reply('An error occurred while processing your request.');
+    }
+  }
+}
 
 
 });
