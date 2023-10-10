@@ -18,56 +18,63 @@ const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
 });
 
-client.once("ready", () => {
- // Define a collector to listen for button interactions
-const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 3_600_000 });
+// Set up the global listener for button interactions
+client.on("interactionCreate", async (interaction) => {
+  if (!interaction.isButton()) {
+    return; // Ignore interactions that are not buttons
+  }
 
-collector.on("collect", async (interaction) => {
-  const username = interaction.member.nickname;
-  console.log(username);
-  let attendanceStatus = interaction.customId;
-  console.log(attendanceStatus);
-  try {
-    console.log('Connected to PostgreSQL database');
+  // Check if it's the specific custom ID you are interested in
+  if (interaction.customId === "Yes" || interaction.customId === "No" || interaction.customId === "Maybe") {
+    const username = interaction.member.nickname;
+    console.log(username);
+    let attendanceStatus = interaction.customId;
+    console.log(attendanceStatus);
+    try {
+      console.log('Connected to PostgreSQL database');
 
-    // Define the table name for attendance data
-    const tableName = 'attendance_data';
+      // Define the table name for attendance data
+      const tableName = 'attendance_data';
 
-    // Create the table if it doesn't exist
-    const createTableQuery = `
-      CREATE TABLE IF NOT EXISTS ${tableName} (
-        id serial PRIMARY KEY,
-        username VARCHAR(255) NOT NULL,
-        attendance_status VARCHAR(10) NOT NULL,
-        created_at TIMESTAMP DEFAULT NOW()
-      )
-    `;
-    await db.query(createTableQuery);
+      // Create the table if it doesn't exist
+      const createTableQuery = `
+        CREATE TABLE IF NOT EXISTS ${tableName} (
+          id serial PRIMARY KEY,
+          username VARCHAR(255) NOT NULL,
+          attendance_status VARCHAR(10) NOT NULL,
+          created_at TIMESTAMP DEFAULT NOW()
+        )
+      `;
+      await db.query(createTableQuery);
 
-    let toUser;
+      let toUser;
 
-    // Insert attendance data into the database
-    const insertQuery = `
-      INSERT INTO ${tableName} (username, attendance_status) VALUES ($1, $2)
-    `;
-    const values = [username, attendanceStatus];
-    await db.query(insertQuery, values);
+      // Insert attendance data into the database
+      const insertQuery = `
+        INSERT INTO ${tableName} (username, attendance_status) VALUES ($1, $2)
+      `;
+      const values = [username, attendanceStatus];
+      await db.query(insertQuery, values);
 
-    toUser = `Attendance choice ${attendanceStatus} recorded for ${username}`;
+      toUser = `Attendance choice ${attendanceStatus} recorded for ${username}`;
 
-    await interaction.reply({
-      content: toUser,
-      ephemeral: true,
-    });
-    await db.release();
-  } catch (error) {
-    console.error('Error handling interaction:', error);
-    // Handle the error and send an error response if needed
-    interaction.reply('An error occurred while processing your request.');
+      await interaction.reply({
+        content: toUser,
+        ephemeral: true,
+      });
+    } catch (error) {
+      console.error('Error handling interaction:', error);
+      // Handle the error and send an error response if needed
+      interaction.reply('An error occurred while processing your request.');
+    }
   }
 });
 
+// The rest of your bot initialization code, including the "ready" event handler
+client.once("ready", () => {
+  console.log("Ready!");
 });
+
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
   if (message.mentions.has(client.user)) {
