@@ -104,7 +104,7 @@ client.on("interactionCreate", async (interaction) => {
           content: toUser,
           ephemeral: true,
         });
-        
+        await db.release()
       } catch (error) {
         console.error('Error handling interaction:', error);
         // Handle the error and send an error response if needed
@@ -145,7 +145,8 @@ client.on("interactionCreate", async (interaction) => {
       content: "Here is the attendance roster:",
       files: [attachment],
       ephemeral: true, // Optional: Make the response ephemeral
-    });
+    }); 
+    console.log(interaction.options)
     if (interaction.options.getBoolean("delete")) {
       await db.query('DELETE FROM attendance_data');
       await interaction.followUp({

@@ -9,7 +9,7 @@ const databaseUrl = process.env.DATABASE_URL;
 const dbClient = new Pool({
   connectionString: databaseUrl,
   max: 20,
-  idleTimeoutMillis: 30000,
+  acquireConnectionTimeout: 300000,
   ssl: true, // Enable SSL/TLS encryption
 });
 
