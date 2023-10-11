@@ -148,6 +148,7 @@ client.on("interactionCreate", async (interaction) => {
         content: toUser,
         ephemeral: true,
       });
+      await dbClient.release();
     } catch (error) {
       console.error('Error handling interaction:', error);
       // Handle the error and send an error response if needed
