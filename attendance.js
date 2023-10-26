@@ -25,18 +25,19 @@ client.once("ready", () => {
 });
 
 client.on("messageCreate", async (message) => {
-  if (message.author.bot) return;
-  if (message.mentions.has(client.user)) {
-    const messageContent = message.content;
-    // Remove user mentions and bot mentions
-    const withoutMentions = messageContent.replace(/<@!\d+>|<@\d+>/g, '');
+  return;
+  //if (message.author.bot) return;
+  // if (message.mentions.has(client.user)) {
+  //   const messageContent = message.content;
+  //   // Remove user mentions and bot mentions
+  //   const withoutMentions = messageContent.replace(/<@!\d+>|<@\d+>/g, '');
 
-    // Trim any leading or trailing spaces
-    const trimmedContent = withoutMentions.trim();
-    const formattedMessage = `${message.member.nickname}: ${trimmedContent}`;
-        const chatGPTResponse = await handleuserinput(formattedMessage);
-    await message.reply(chatGPTResponse);
-  }
+  //   // Trim any leading or trailing spaces
+  //   const trimmedContent = withoutMentions.trim();
+  //   const formattedMessage = `${message.member.nickname}: ${trimmedContent}`;
+  //       const chatGPTResponse = await handleuserinput(formattedMessage);
+  //   await message.reply(chatGPTResponse);
+  // }
 });
 
 client.on("interactionCreate", async (interaction) => {
