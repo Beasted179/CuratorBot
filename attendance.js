@@ -10,7 +10,7 @@ import {
 } from "discord.js";
 
 import {dbClient} from "./Client.js";
-import{ handleuserinput }from"./curatorBrain.js";
+//import{ handleuserinput }from"./curatorBrain.js";
 import * as fs from "fs" ;
 import { config } from "dotenv";
 config();
