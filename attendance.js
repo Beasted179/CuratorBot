@@ -9,7 +9,7 @@ import {
   ComponentType,
 } from "discord.js";
 
-import {dbClient} from "./Client.js";
+import {dbPool} from "./Client.js";
 //import{ handleuserinput }from"./curatorBrain.js";
 import * as fs from "fs" ;
 import { config } from "dotenv";
@@ -17,7 +17,7 @@ config();
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
 });
-
+const dbClient = await dbPool.connect();
 
 // The rest of your bot initialization code, including the "ready" event handler
 client.once("ready", () => {
@@ -105,13 +105,13 @@ client.on("interactionCreate", async (interaction) => {
           ephemeral: true,
         });
       }
+      dbClient.release();
     } catch (error) {
       console.error('Error:', error);
     } 
   
 
 } else if(interaction.isButton()){
-  console.log(interaction, "this is the interaction");
   if (interaction.customId === "Yes" || interaction.customId === "No" || interaction.customId === "Maybe") {
     const username = interaction.member.nickname;
     console.log(username);
@@ -149,7 +149,7 @@ client.on("interactionCreate", async (interaction) => {
         content: toUser,
         ephemeral: true,
       });
-      await dbClient.release();
+      dbClient.release();
     } catch (error) {
       console.error('Error handling interaction:', error);
       // Handle the error and send an error response if needed
