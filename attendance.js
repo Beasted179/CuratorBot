@@ -17,7 +17,7 @@ config();
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
 });
-const dbClient = await dbPool.connect();
+
 
 // The rest of your bot initialization code, including the "ready" event handler
 client.once("ready", () => {
@@ -72,7 +72,7 @@ client.on("interactionCreate", async (interaction) => {
         return;
     } 
     try {
-      
+      const dbClient = await dbPool.connect();
       // Query to retrieve attendance data (customize as needed)
       const query = 'SELECT username, attendance_status FROM attendance_data';
   
@@ -105,11 +105,11 @@ client.on("interactionCreate", async (interaction) => {
           ephemeral: true,
         });
       }
-      
+      dbClient.release();
     } catch (error) {
       console.error('Error:', error);
     } 
-    dbClient.release();
+    
 
 } else if(interaction.isButton()){
   if (interaction.customId === "Yes" || interaction.customId === "No" || interaction.customId === "Maybe") {
@@ -118,6 +118,7 @@ client.on("interactionCreate", async (interaction) => {
     let attendanceStatus = interaction.customId;
     console.log(attendanceStatus);
     try {
+      const dbClient = await dbPool.connect();
       console.log('Connected to PostgreSQL database');
 
       // Define the table name for attendance data
@@ -149,13 +150,13 @@ client.on("interactionCreate", async (interaction) => {
         content: toUser,
         ephemeral: true,
       });
-      
+      dbClient.release();
     } catch (error) {
       console.error('Error handling interaction:', error);
       // Handle the error and send an error response if needed
       interaction.reply('An error occurred while processing your request.');
     }
-    dbClient.release();
+    
   }
 }
 
