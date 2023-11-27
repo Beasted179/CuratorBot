@@ -105,11 +105,11 @@ client.on("interactionCreate", async (interaction) => {
           ephemeral: true,
         });
       }
-      dbClient.release();
+      
     } catch (error) {
       console.error('Error:', error);
     } 
-  
+    dbClient.release();
 
 } else if(interaction.isButton()){
   if (interaction.customId === "Yes" || interaction.customId === "No" || interaction.customId === "Maybe") {
@@ -149,12 +149,13 @@ client.on("interactionCreate", async (interaction) => {
         content: toUser,
         ephemeral: true,
       });
-      dbClient.release();
+      
     } catch (error) {
       console.error('Error handling interaction:', error);
       // Handle the error and send an error response if needed
       interaction.reply('An error occurred while processing your request.');
     }
+    dbClient.release();
   }
 }
 
